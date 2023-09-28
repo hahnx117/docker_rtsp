@@ -1,0 +1,24 @@
+# https://github.com/bluenviron/mediamtx
+
+version: "3"
+
+services:
+  rtsp_webcam:
+    container_name: rtsp_webcam
+    image: bluenviron/mediamtx:latest-rpi
+    #network: host
+    ports:
+      - 8554:8554
+      #- 8000:8000
+      #- 8001:8001
+      #- 1935:1935
+      #- 8888:8888
+      #- 8889:8889
+      #- 8890:8890
+    privileged: true
+    volumes:
+      - /run/udev:/run/udev:ro
+      - ./mediamtx.yml:/mediamtx.yml
+    env_file: .env
+    tmpfs:
+      - /dev/shm:exec
